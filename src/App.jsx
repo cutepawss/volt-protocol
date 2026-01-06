@@ -153,7 +153,67 @@ React.useEffect(() => {
                 </p>
               </div>
           <div className="wallet-section">
-  <ConnectButton />
+  <ConnectButton.Custom>
+    {({
+      account,
+      chain,
+      openAccountModal,
+      openChainModal,
+      openConnectModal,
+      mounted,
+    }) => {
+      const ready = mounted;
+      const connected = ready && account && chain;
+
+      return (
+        <div
+          {...(!ready && {
+            'aria-hidden': true,
+            style: {
+              opacity: 0,
+              pointerEvents: 'none',
+              userSelect: 'none',
+            },
+          })}
+        >
+          {(() => {
+            if (!connected) {
+              return (
+                <button className="connect-btn" onClick={openConnectModal}>
+                  CONNECT WALLET
+                </button>
+              );
+            }
+
+            if (chain.unsupported) {
+              return (
+                <button className="connect-btn" onClick={openChainModal}>
+                  Wrong Network
+                </button>
+              );
+            }
+
+            return (
+              <div className="wallet-connected">
+                <div className="wallet-address" onClick={openAccountModal} style={{ cursor: 'pointer' }}>
+                  {account.displayName}
+                </div>
+                {user.balanceVUSDC !== undefined && (
+                  <div className="wallet-balance">
+                    <span className="balance-label">vUSDC:</span>
+                    <span className="balance-value">{user.balanceVUSDC.toFixed(2)}</span>
+                  </div>
+                )}
+                <button className="connect-btn disconnect" onClick={openAccountModal}>
+                  Disconnect
+                </button>
+              </div>
+            );
+          })()}
+        </div>
+      );
+    }}
+  </ConnectButton.Custom>
 </div>
                             </div>
 
