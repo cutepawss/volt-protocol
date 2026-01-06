@@ -1,0 +1,107 @@
+.errorBoundary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 40px 20px;
+  background: #0a0a0a;
+  color: #fff;
+  font-family: 'Courier New', Monaco, monospace;
+}
+
+.errorContent {
+  max-width: 600px;
+  width: 100%;
+  padding: 30px;
+  background: #1a1a1a;
+  border: 1px solid #ff4444;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.errorTitle {
+  color: #ff4444;
+  font-size: 24px;
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+.errorMessage {
+  color: #ccc;
+  font-size: 16px;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.errorDetails {
+  margin: 24px 0;
+  text-align: left;
+  background: #0a0a0a;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 16px;
+}
+
+.errorSummary {
+  color: #ffaa00;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 12px;
+  user-select: none;
+}
+
+.errorSummary:hover {
+  color: #ffcc00;
+}
+
+.errorStack {
+  color: #ff4444;
+  font-size: 12px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+  padding: 12px;
+  background: #000;
+  border-radius: 4px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.errorActions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.resetButton,
+.reloadButton {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Courier New', Monaco, monospace;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.resetButton {
+  background: #00e5ff;
+  color: #000;
+}
+
+.resetButton:hover {
+  background: #00d4e6;
+}
+
+.reloadButton {
+  background: #ff4444;
+  color: #fff;
+}
+
+.reloadButton:hover {
+  background: #ff3333;
+}
+

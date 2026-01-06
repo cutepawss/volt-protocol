@@ -1,0 +1,429 @@
+/* Professional Fintech Theme */
+
+.orderBookContainer {
+  width: 100%;
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+}
+
+.header {
+  margin-bottom: 30px;
+  border-bottom: 2px solid #00e5ff;
+  padding-bottom: 15px;
+}
+
+.title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.createOrderSection {
+  margin-bottom: 30px;
+  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.tableSection {
+  margin-bottom: 30px;
+}
+
+.tableHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.filtersSection {
+  margin-bottom: 20px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.searchBox {
+  margin-bottom: 16px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.searchInput::placeholder {
+  color: #666;
+}
+
+.filtersRow {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.filterGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filterLabel {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.filterSelect {
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 150px;
+}
+
+.filterSelect:hover {
+  border-color: var(--accent);
+}
+
+.filterSelect:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.clearFilters {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-left: auto;
+}
+
+.clearFilters:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+  background: rgba(0, 229, 255, 0.1);
+}
+
+.tableTitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #e0e0e0;
+  margin: 0;
+}
+
+.liveIndicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #00ff00;
+}
+
+.liveDot {
+  width: 8px;
+  height: 8px;
+  background: #00ff00;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.emptyState {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.emptySubtext {
+  font-size: 0.9rem;
+  margin-top: 10px;
+  color: #444;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.orderTable {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-card);
+}
+
+.orderTable thead {
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 2px solid var(--border);
+}
+
+.orderTable th {
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-right: 1px solid var(--border);
+  font-family: 'DM Sans', sans-serif;
+}
+
+.orderTable th:last-child {
+  border-right: none;
+}
+
+.orderTable tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.orderTable tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.orderTable td {
+  padding: 16px;
+  font-size: 0.9rem;
+  border-right: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.orderTable td:last-child {
+  border-right: none;
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.modalClose {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #888;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalClose:hover {
+  color: #fff;
+}
+
+.modalTitle {
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  margin: 0 0 24px 0;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formGroup label {
+  font-size: 0.9rem;
+  color: #888;
+  font-weight: 600;
+}
+
+.formGroup input {
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.formGroup small {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.modalActions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.btnPrimary,
+.btnSecondary {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.btnPrimary {
+  background: var(--accent);
+  color: #000;
+  font-weight: 600;
+}
+
+.btnPrimary:hover {
+  background: #00b8d4;
+}
+
+.btnSecondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.btnSecondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--accent);
+}
+
+/* Stream Redirected Animation */
+.streamRedirectedAnim {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2000;
+  pointer-events: none;
+  animation: streamRedirectedFadeIn 0.3s ease-out;
+}
+
+.animContent {
+  background: #1a1a1a;
+  border: 3px solid #00ff00;
+  border-radius: 8px;
+  padding: 40px 60px;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+}
+
+.animText {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #00ff00;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+}
+
+.animSubtext {
+  font-size: 1rem;
+  color: #888;
+  font-family: 'Courier New', monospace;
+}
+
+.animFadeOut {
+  animation: streamRedirectedFadeOut 0.5s ease-out forwards;
+}
+
+@keyframes streamRedirectedFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes streamRedirectedFadeOut {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}
+

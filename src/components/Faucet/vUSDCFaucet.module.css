@@ -1,0 +1,169 @@
+.faucetContainer {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.faucetCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+}
+
+.faucetHeader {
+  margin-bottom: 24px;
+}
+
+.faucetTitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 12px 0;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.faucetAmount {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  text-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+}
+
+.faucetBalance {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-family: 'DM Sans', sans-serif;
+}
+
+.faucetBalance::before {
+  content: '💰 ';
+}
+
+.faucetMessage {
+  padding: 20px;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.cooldownInfo,
+.readyInfo {
+  margin-bottom: 24px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.cooldownLabel,
+.readyLabel {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.cooldownTime {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffaa00;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.readyLabel {
+  color: var(--success);
+  font-weight: 600;
+}
+
+.readySubtext {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.faucetButton {
+  width: 100%;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, var(--accent) 0%, #00b8d4 100%);
+  border: none;
+  border-radius: 8px;
+  color: #000;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.faucetButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 229, 255, 0.3);
+}
+
+.faucetButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #666;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  border-top-color: #000;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.faucetNote {
+  margin-top: 20px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.faucetNote p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.faucetNote strong {
+  color: var(--text-primary);
+}
+
+.resetButton {
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: rgba(255, 170, 0, 0.1);
+  border: 1px solid rgba(255, 170, 0, 0.3);
+  border-radius: 6px;
+  color: #ffaa00;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.resetButton:hover {
+  background: rgba(255, 170, 0, 0.2);
+  border-color: rgba(255, 170, 0, 0.5);
+  transform: translateY(-1px);
+}
+

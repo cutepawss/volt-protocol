@@ -1,0 +1,70 @@
+.fullScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.inline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.spinner {
+  position: relative;
+}
+
+.spinnerCircle {
+  border: 3px solid rgba(0, 229, 255, 0.2);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.size-small {
+  width: 24px;
+  height: 24px;
+}
+
+.size-small .spinnerCircle {
+  width: 24px;
+  height: 24px;
+  border-width: 2px;
+}
+
+.size-medium {
+  width: 40px;
+  height: 40px;
+}
+
+.size-medium .spinnerCircle {
+  width: 40px;
+  height: 40px;
+  border-width: 3px;
+}
+
+.size-large {
+  width: 60px;
+  height: 60px;
+}
+
+.size-large .spinnerCircle {
+  width: 60px;
+  height: 60px;
+  border-width: 4px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+

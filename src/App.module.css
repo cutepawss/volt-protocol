@@ -1,0 +1,166 @@
+/* App Styles - Bloomberg Terminal Theme */
+
+.app {
+  min-height: 100vh;
+  background: #0a0a0a;
+  color: #e0e0e0;
+  font-family: 'Courier New', 'Monaco', monospace;
+}
+
+.header {
+  border-bottom: 2px solid #00e5ff;
+  background: #0f0f0f;
+}
+
+.headerContent {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  color: #00e5ff;
+  margin: 0 0 4px 0;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.tagline {
+  font-size: 0.85rem;
+  color: #888;
+  margin: 0;
+}
+
+.walletSection {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.walletInfo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.walletAddress {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  color: #00e5ff;
+  padding: 8px 12px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 4px;
+}
+
+.walletBalance {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  color: #00ff00;
+  padding: 8px 12px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 4px;
+}
+
+.btnConnect,
+.btnDisconnect {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.btnConnect {
+  background: #00e5ff;
+  color: #000;
+}
+
+.btnConnect:hover {
+  background: #00b8d4;
+}
+
+.btnDisconnect {
+  background: #333;
+  color: #e0e0e0;
+  border: 1px solid #555;
+}
+
+.btnDisconnect:hover {
+  background: #444;
+}
+
+.nav {
+  border-bottom: 1px solid #333;
+  background: #0f0f0f;
+  display: flex;
+  gap: 0;
+}
+
+.navTab {
+  padding: 15px 30px;
+  background: transparent;
+  color: #888;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  font-weight: 400;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.navTab:hover {
+  color: #e0e0e0;
+  background: #151515;
+}
+
+.navTabActive {
+  color: #00e5ff;
+  border-bottom-color: #00e5ff;
+  font-weight: 600;
+}
+
+.navTabActive:hover {
+  background: transparent;
+}
+
+.main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .headerContent {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .walletInfo {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .navTab {
+    padding: 12px 20px;
+    font-size: 0.85rem;
+  }
+
+  .main {
+    padding: 20px 15px;
+  }
+}
+
