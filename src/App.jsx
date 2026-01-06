@@ -3,6 +3,8 @@ import { useVolt } from './context/VoltContext';
 import ToastContainer from './components/Shared/ToastContainer';
 import LoadingSpinner from './components/Shared/LoadingSpinner';
 import './App.css';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { useAccount } from 'wagmi';
 
 // Lazy load faucet component
 const VUSDCFaucet = lazy(() => import('./components/Faucet/vUSDCFaucet'));
@@ -20,6 +22,16 @@ const StreamAnalytics = lazy(() => import('./components/Analytics/StreamAnalytic
 function App() {
   const { connectWallet, disconnectWallet, user, toast } = useVolt();
   const [activeTab, setActiveTab] = React.useState('dashboard');
+  const { address, isConnected } = useAccount();
+
+// Sync RainbowKit with VoltContext
+React.useEffect(() => {
+  if (isConnected && address && address !== user.address) {
+    connectWallet();
+  } else if (!isConnected && user.address) {
+    disconnectWallet();
+  }
+}, [isConnected, address, user.address]);
 
   return (
     <div className="app-container">
@@ -141,34 +153,8 @@ function App() {
                 </p>
               </div>
           <div className="wallet-section">
-            {user.address ? (
-              <div className="wallet-connected">
-                <div className="wallet-address">
-                  {user.address.slice(0, 6)}...{user.address.slice(-4)}
-            </div>
-                <div className="wallet-balance">
-                  {user.balanceVUSDC !== undefined ? (
-                    <>
-                      <span className="balance-label">vUSDC:</span>
-                      <span className="balance-value">{user.balanceVUSDC.toFixed(2)}</span>
-                    </>
-                  ) : (
-                    <>
-                      <span className="balance-label">USDC:</span>
-                      <span className="balance-value">{user.balanceUSDC.toFixed(2)}</span>
-                    </>
-                  )}
-                </div>
-                <button className="connect-btn disconnect" onClick={disconnectWallet}>
-                  Disconnect
-                </button>
-                    </div>
-                  ) : (
-              <button className="connect-btn" onClick={connectWallet}>
-                CONNECT WALLET
-                                  </button>
-                                )}
-                              </div>
+  <ConnectButton />
+</div>
                             </div>
 
         {/* CONTENT AREA */}
