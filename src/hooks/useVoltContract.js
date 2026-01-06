@@ -12,7 +12,7 @@ const getABI = () => {
   if (VoltProtocolABI && Array.isArray(VoltProtocolABI.abi)) {
     return VoltProtocolABI.abi;
   }
-  console.error('❌ Invalid ABI format:', VoltProtocolABI);
+  console.error('âŒ Invalid ABI format:', VoltProtocolABI);
   throw new Error('Invalid contract ABI format. Expected array or {abi: array}');
 };
 
@@ -35,7 +35,7 @@ const VUSDC_TOKEN_ADDRESS = CONTRACT_ADDRESSES.vusdcToken;
 const FAUCET_ADDRESS = CONTRACT_ADDRESSES.faucet;
 
 // #region agent log - Contract address verification
-console.log('🔍 Contract Address Check:', {
+console.log('ðŸ” Contract Address Check:', {
   configValue: CONTRACT_ADDRESSES.voltProtocol,
   envValue: import.meta.env.VITE_CONTRACT_ADDRESS,
   finalAddress: CONTRACT_ADDRESS,
@@ -785,7 +785,7 @@ export const useVoltContract = () => {
         );
       }
       
-      console.log('✓ Allowance verified. Proceeding with stream creation...');
+      console.log('âœ“ Allowance verified. Proceeding with stream creation...');
       
       // Double-check balance before proceeding
       const finalBalance = await vusdcTokenContract.balanceOf(userAddress);
@@ -816,17 +816,17 @@ export const useVoltContract = () => {
         console.log('   Contract vUSDC address:', contractVusdcAddress);
         
         if (!contractVusdcAddress || contractVusdcAddress === '0x0000000000000000000000000000000000000000') {
-          console.warn('   ⚠️ vUSDC token address is not set in contract (will be caught in static call)');
+          console.warn('   âš ï¸ vUSDC token address is not set in contract (will be caught in static call)');
         } else if (contractLower !== expectedLower) {
           console.warn(
-            `   ⚠️ WARNING: Contract vUSDC address (${contractAddrStr}) ` +
+            `   âš ï¸ WARNING: Contract vUSDC address (${contractAddrStr}) ` +
             `does not match configured address (${expectedAddrStr})`
           );
         } else {
-          console.log('   ✓ vUSDC token address is correctly set');
+          console.log('   âœ“ vUSDC token address is correctly set');
         }
       } catch (vusdcCheckError) {
-        console.warn('   ⚠️ Could not read vUSDC token address from contract:', vusdcCheckError.message);
+        console.warn('   âš ï¸ Could not read vUSDC token address from contract:', vusdcCheckError.message);
         console.warn('   Will check via static call instead...');
         // Don't throw - let static call catch the actual error
       }
@@ -838,9 +838,9 @@ export const useVoltContract = () => {
           durationInSeconds,
           depositAmountWei
         );
-        console.log('   ✓ Static call succeeded - transaction should work');
+        console.log('   âœ“ Static call succeeded - transaction should work');
       } catch (staticCallError) {
-        console.error('   ❌ Static call failed:', staticCallError);
+        console.error('   âŒ Static call failed:', staticCallError);
         const errorMessage = staticCallError.message || staticCallError.reason || '';
         const errorData = staticCallError.data || staticCallError.error?.data;
         
@@ -872,7 +872,7 @@ export const useVoltContract = () => {
         // Check for "Stream already exists" - this means old contract is being used
         if (errorMessage.includes('Stream already exists') || errorMessage.includes('stream already exists')) {
           throw new Error(
-            '❌ Old Contract Detected: The contract at this address does not support multiple streams. ' +
+            'âŒ Old Contract Detected: The contract at this address does not support multiple streams. ' +
             `You already have an active stream. ` +
             `Please use the new contract that supports multiple streams, or complete/cancel your existing stream first.`
           );
@@ -882,7 +882,7 @@ export const useVoltContract = () => {
         if (errorMessage.includes('vUSDC token not set') || errorMessage.includes('vusdcTokenAddress')) {
           if (contractVusdcAddress === null || contractVusdcAddress === '0x0000000000000000000000000000000000000000') {
             throw new Error(
-              '❌ Contract configuration error: vUSDC token address is not set in the contract. ' +
+              'âŒ Contract configuration error: vUSDC token address is not set in the contract. ' +
               `Contract address: ${CONTRACT_ADDRESS}. ` +
               `Expected vUSDC address: ${VUSDC_TOKEN_ADDRESS}. ` +
               'The contract owner must call setVusdcTokenAddress() to configure the vUSDC token. ' +
@@ -890,7 +890,7 @@ export const useVoltContract = () => {
             );
           } else if (!addressesMatch) {
             throw new Error(
-              `❌ Contract configuration error: vUSDC token address mismatch. ` +
+              `âŒ Contract configuration error: vUSDC token address mismatch. ` +
               `Contract has: ${contractAddrStr}, Expected: ${expectedAddrStr}. ` +
               'The contract owner must update the vUSDC token address.'
             );
@@ -907,7 +907,7 @@ export const useVoltContract = () => {
           // Addresses don't match, might be vUSDC token error
           if (!contractVusdcAddress || contractVusdcAddress === '0x0000000000000000000000000000000000000000') {
             throw new Error(
-              '❌ Contract Configuration Error: The contract is not properly configured. ' +
+              'âŒ Contract Configuration Error: The contract is not properly configured. ' +
               `The vUSDC token address is likely not set in the contract. ` +
               `\n\n` +
               `Contract Address: ${CONTRACT_ADDRESS}\n` +
@@ -938,7 +938,7 @@ export const useVoltContract = () => {
         // This is most likely because vUSDC token address is not set in contract
         if (errorMessage.includes('missing revert data') || errorMessage.includes('execution reverted')) {
           throw new Error(
-            `❌ Contract Configuration Error: The contract is not properly configured. ` +
+            `âŒ Contract Configuration Error: The contract is not properly configured. ` +
             `\n\n` +
             `The vUSDC token address is likely not set in the contract. ` +
             `\n\n` +
@@ -1048,7 +1048,7 @@ export const useVoltContract = () => {
       
       // CRITICAL: Check allowance - if insufficient, throw error immediately
       if (preTxAllowance < depositAmountWei) {
-        const errorMsg = `❌ CRITICAL: Insufficient allowance! ` +
+        const errorMsg = `âŒ CRITICAL: Insufficient allowance! ` +
           `Current: ${ethers.formatEther(preTxAllowance)} vUSDC, Required: ${ethers.formatEther(depositAmountWei)} vUSDC. ` +
           `Please approve the contract (${CONTRACT_ADDRESS}) to spend your vUSDC tokens first. ` +
           `The approval transaction should have been requested automatically.`;
@@ -1058,13 +1058,13 @@ export const useVoltContract = () => {
       
       // CRITICAL: Check balance
       if (preTxBalance < depositAmountWei) {
-        const errorMsg = `❌ CRITICAL: Insufficient balance! ` +
+        const errorMsg = `âŒ CRITICAL: Insufficient balance! ` +
           `Current: ${ethers.formatEther(preTxBalance)} vUSDC, Required: ${ethers.formatEther(depositAmountWei)} vUSDC.`;
         console.error(errorMsg);
         throw new Error(errorMsg);
       }
       
-      console.log('✓ All pre-transaction checks passed');
+      console.log('âœ“ All pre-transaction checks passed');
 
       // Execute createStreamWithVUSDC transaction
       const gasLimit = gasEstimationFailed 
@@ -1150,7 +1150,7 @@ export const useVoltContract = () => {
         console.log('Sending transaction via signer.sendTransaction...');
         tx = await signer.sendTransaction(transactionRequest);
         
-        console.log('✓ Transaction sent successfully!');
+        console.log('âœ“ Transaction sent successfully!');
         console.log('  Transaction Hash:', tx.hash);
         
         // Verify the transaction object has data
@@ -1162,7 +1162,7 @@ export const useVoltContract = () => {
           // data might not be available immediately in tx object
         });
       } catch (txError) {
-        console.error('❌ Transaction send error:', txError);
+        console.error('âŒ Transaction send error:', txError);
         console.error('Error details:', {
           message: txError.message,
           code: txError.code,
@@ -1208,7 +1208,7 @@ export const useVoltContract = () => {
             )
           ]);
           
-          console.log('✓ Transaction confirmed in block:', receipt.blockNumber);
+          console.log('âœ“ Transaction confirmed in block:', receipt.blockNumber);
           break; // Success, exit retry loop
         } catch (receiptError) {
           lastError = receiptError;
@@ -1270,7 +1270,7 @@ export const useVoltContract = () => {
                 try {
                   receipt = await provider.getTransactionReceipt(txHash);
                   if (receipt) {
-                    console.log('✓ Got receipt manually:', receipt.blockNumber);
+                    console.log('âœ“ Got receipt manually:', receipt.blockNumber);
                     break;
                   }
                 } catch (e) {
@@ -1297,7 +1297,7 @@ export const useVoltContract = () => {
       
       // If we still don't have a receipt after all retries, but transaction was sent
       if (!receipt && lastError) {
-        console.warn('⚠️ Could not get transaction receipt, but transaction was sent.');
+        console.warn('âš ï¸ Could not get transaction receipt, but transaction was sent.');
         console.warn('Transaction hash:', tx.hash);
         console.warn('You can check the transaction status on a block explorer.');
         
@@ -1452,7 +1452,15 @@ export const useVoltContract = () => {
  * Withdraw from stream
  * Contract function: withdraw(uint256 streamId, uint256 amount)
  */
-  const withdrawFromStream = useCallback(async (streamId) => {
+  /**
+ * Withdraw from stream
+ * Contract function: withdraw(uint256 streamId, uint256 amount)
+ */
+/**
+ * Withdraw from stream
+ * Contract function: withdraw(uint256 streamId, uint256 amount)
+ */
+const withdrawFromStream = useCallback(async (streamId, amount) => {
   if (!contract || !signer) {
     throw new Error('Wallet not connected');
   }
@@ -1460,15 +1468,26 @@ export const useVoltContract = () => {
   if (!streamId) {
     throw new Error('Stream ID is required');
   }
+  
+  if (!amount || amount <= 0) {
+    throw new Error('Amount must be greater than 0');
+  }
 
   try {
     const streamIdBigInt = BigInt(streamId);
+    const amountWei = ethers.parseEther(amount.toString());
+    
+    console.log('Withdrawing from stream:', {
+      streamId: streamId.toString(),
+      amount: amount.toString(),
+      amountWei: amountWei.toString()
+    });
 
     // Estimate gas
-    const gasEstimate = await contract.withdraw.estimateGas(streamIdBigInt);
-
+    const gasEstimate = await contract.withdraw.estimateGas(streamIdBigInt, amountWei);
+    
     // Execute transaction
-    const tx = await contract.withdraw(streamIdBigInt, {
+    const tx = await contract.withdraw(streamIdBigInt, amountWei, {
       gasLimit: gasEstimate * BigInt(120) / BigInt(100),
     });
 
@@ -1482,6 +1501,21 @@ export const useVoltContract = () => {
     };
   } catch (err) {
     console.error('Error withdrawing from stream:', err);
+    
+    // Provide more helpful error messages
+    if (err.message?.includes('Amount must be greater than 0')) {
+      throw new Error('Withdrawal amount must be greater than 0');
+    }
+    if (err.message?.includes('Nothing to withdraw')) {
+      throw new Error('Insufficient withdrawable balance. Please check your stream status.');
+    }
+    if (err.message?.includes('Not stream owner')) {
+      throw new Error('You are not the owner of this stream');
+    }
+    if (err.message?.includes('No active stream')) {
+      throw new Error('No active stream found');
+    }
+    
     throw err;
   }
 }, [contract, signer]);
@@ -1493,7 +1527,7 @@ export const useVoltContract = () => {
   const setupEventListeners = useCallback((onStreamCreated, onStreamSold, onWithdraw) => {
   if (!contract) return () => {};
 
-  console.log('🎧 [setupEventListeners] Registering event listeners');
+  console.log('ðŸŽ§ [setupEventListeners] Registering event listeners');
 
   // StreamCreated event handler
   const streamCreatedHandler = (user, streamId, amount, duration, event) => {
@@ -1543,7 +1577,7 @@ export const useVoltContract = () => {
 
   // Return cleanup function
   return () => {
-    console.log('🧹 [setupEventListeners] Cleaning up event listeners');
+    console.log('ðŸ§¹ [setupEventListeners] Cleaning up event listeners');
     if (onStreamCreated) {
       contract.off('StreamCreated', streamCreatedHandler);
     }
@@ -1583,4 +1617,3 @@ export const useVoltContract = () => {
 };
 
 export default useVoltContract;
-
