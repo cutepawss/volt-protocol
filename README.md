@@ -11,7 +11,7 @@ Decentralized P2P streaming payment platform built on Arc
 
 Volt Protocol enables continuous cryptocurrency payment streams with real-time P2P order matching. Built on Arc's Layer-1 infrastructure, leveraging USDC native gas and sub-second deterministic finality for institutional-grade performance.
 
-**Live Demo**: SOON
+**Live Demo**: [volt-protocol.xyz](https://www.volt-protocol.xyz/)
 
 ---
 
