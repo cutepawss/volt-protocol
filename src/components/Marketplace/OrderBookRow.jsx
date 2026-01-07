@@ -13,6 +13,11 @@ import styles from './OrderBookRow.module.css';
  */
 
 const OrderBookRow = ({ order, stream, onBuyNow, onPlaceBid, onViewDetails, onCancelOrder, onViewBids, isOwnOrder }) => {
+  // Safety check: If no stream, don't render
+  if (!stream) {
+    return null;
+  }
+
   // Calculate real-time price using custom hook
   const { currentPrice, remainingBalance, timeRemaining, formattedPrice, formattedBalance } = 
     useLiveStreamPrice(stream, order.priceRatio, true);
@@ -34,17 +39,17 @@ const OrderBookRow = ({ order, stream, onBuyNow, onPlaceBid, onViewDetails, onCa
     }
   };
 
-  const riskColor = getRiskColor(order.riskLevel);
-  const discount = ((1 - order.priceRatio) * 100).toFixed(1);
+  const riskColor = getRiskColor(order.riskLevel || 'B');
+  const discount = ((1 - (order.priceRatio || 0.9)) * 100).toFixed(1);
 
-  // Calculate order value based on percentage
-  const orderValue = (remainingBalance * order.percentage) / 100;
-  const orderPrice = orderValue * order.priceRatio;
+  // Calculate order value based on percentage - with safety checks
+  const orderValue = (remainingBalance * (order.percentage || 0)) / 100;
+  const orderPrice = orderValue * (order.priceRatio || 0.9);
 
-  // Calculate duration
-  const totalDurationDays = Math.floor(stream.duration / (60 * 60 * 24));
-  const daysRemaining = Math.floor(timeRemaining / (60 * 60 * 24));
-  const hoursRemaining = Math.floor((timeRemaining % (60 * 60 * 24)) / (60 * 60));
+  // Calculate duration - with safety checks
+  const totalDurationDays = Math.floor((stream.duration || 0) / (60 * 60 * 24));
+  const daysRemaining = Math.floor((timeRemaining || 0) / (60 * 60 * 24));
+  const hoursRemaining = Math.floor(((timeRemaining || 0) % (60 * 60 * 24)) / (60 * 60));
 
   return (
     <tr 
@@ -54,7 +59,7 @@ const OrderBookRow = ({ order, stream, onBuyNow, onPlaceBid, onViewDetails, onCa
     >
       <td className={styles.sellerCell}>
         <div className={styles.address}>
-          {order.seller.slice(0, 6)}...{order.seller.slice(-4)}
+          {order.seller ? `${order.seller.slice(0, 6)}...${order.seller.slice(-4)}` : 'Unknown'}
         </div>
       </td>
       
@@ -81,22 +86,22 @@ const OrderBookRow = ({ order, stream, onBuyNow, onPlaceBid, onViewDetails, onCa
             borderColor: riskColor,
           }}
         >
-          {order.riskScore}/100 ({order.riskLevel})
+          {order.riskScore || 50}/100 ({order.riskLevel || 'B'})
         </div>
       </td>
 
       <td className={styles.amountCell}>
         <div className={styles.amountValue}>
-          {formattedBalance} USDC
+          {formattedBalance || '0'} USDC
         </div>
         <div className={styles.amountSubtext}>
-          {order.percentage}% of stream
+          {order.percentage || 0}% of stream
         </div>
       </td>
 
       <td className={styles.priceCell}>
         <div className={styles.priceValue}>
-          {formattedPrice} USDC
+          {formattedPrice || '0'} USDC
         </div>
         <div className={styles.priceSubtext}>
           Updates every second
@@ -105,7 +110,7 @@ const OrderBookRow = ({ order, stream, onBuyNow, onPlaceBid, onViewDetails, onCa
 
       <td className={styles.orderPriceCell}>
         <div className={styles.orderPriceValue}>
-          {orderPrice.toFixed(6)} USDC
+          {(orderPrice || 0).toFixed(6)} USDC
         </div>
       </td>
 
@@ -176,4 +181,3 @@ const OrderBookRow = ({ order, stream, onBuyNow, onPlaceBid, onViewDetails, onCa
 };
 
 export default OrderBookRow;
-
