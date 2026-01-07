@@ -151,7 +151,7 @@ const OrderBook = () => {
   return (
     <div className={styles.orderBookContainer}>
       {/* Info Box */}
-      <InfoBox title="🪙 Stream Marketplace" type="info">
+      <InfoBox title="Stream Marketplace" type="info">
         <p>
           The <strong>Marketplace</strong> is where you can buy and sell stream shares. 
           Stream owners can list their streams for sale, and buyers can purchase them at discounted prices.
@@ -183,10 +183,7 @@ const OrderBook = () => {
       <div className={styles.tableSection}>
         <div className={styles.tableHeader}>
           <h2 className={styles.tableTitle}>
-            Active Sell Orders ({activeOrders.filter(order => {
-              const stream = activeStreams.find(s => s.id === order.streamId);
-              return stream; // Only count orders with streams
-            }).length})
+            Active Sell Orders ({activeOrders.length})
           </h2>
           <div className={styles.liveIndicator}>
             <span className={styles.liveDot}></span>
@@ -282,6 +279,7 @@ const OrderBook = () => {
               <tbody>
                 {activeOrders.map((order) => {
                   const stream = activeStreams.find((s) => s.id === order.streamId);
+                  // Don't skip if no stream - OrderBookRow handles it
                   
                   return (
                     <OrderBookRow
