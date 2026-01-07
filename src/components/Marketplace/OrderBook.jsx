@@ -5,6 +5,7 @@ import OrderBookRow from './OrderBookRow';
 import CreateOrderForm from './CreateOrderForm';
 import OrderDetailModal from './OrderDetailModal';
 import MyBidsPanel from './MyBidsPanel';
+import MyOrdersPanel from './MyOrdersPanel';
 import OrderBidsPanel from './OrderBidsPanel';
 import InfoBox from '../Shared/InfoBox';
 import styles from './OrderBook.module.css';
@@ -17,6 +18,7 @@ import styles from './OrderBook.module.css';
  * - Real-time price updates (every second)
  * - Buy Now and Place Bid actions
  * - Create new sell order form
+ * - My Orders Panel (NEW!)
  */
 
 const OrderBook = () => {
@@ -38,12 +40,8 @@ const OrderBook = () => {
 
   // Memoize filtered and sorted orders for performance
   const activeOrders = useMemo(() => {
-  
-  // Filter active orders
-  let filtered = orderBook.filter((order) => {
-    const stream = activeStreams.find((s) => s.id === order.streamId);
-    return stream && stream.remainingBalance > 0;
-  });
+    // ✅ FIX: Show ALL active orders, not just user's streams
+    let filtered = orderBook.filter((order) => order.isActive);
 
     // Apply search filter
     if (debouncedSearchQuery) {
@@ -153,7 +151,7 @@ const OrderBook = () => {
   return (
     <div className={styles.orderBookContainer}>
       {/* Info Box */}
-      <InfoBox title="🏪 Stream Marketplace" type="info">
+      <InfoBox title="🪙 Stream Marketplace" type="info">
         <p>
           The <strong>Marketplace</strong> is where you can buy and sell stream shares. 
           Stream owners can list their streams for sale, and buyers can purchase them at discounted prices.
@@ -174,6 +172,12 @@ const OrderBook = () => {
       <div className={styles.createOrderSection}>
         <CreateOrderForm />
       </div>
+
+      {/* My Orders Panel - NEW! */}
+      <MyOrdersPanel 
+        onViewBids={handleViewBids}
+        onCancelOrder={handleCancelOrder}
+      />
 
       {/* Order Book Table */}
       <div className={styles.tableSection}>
@@ -275,8 +279,8 @@ const OrderBook = () => {
               <tbody>
                 {activeOrders.map((order) => {
                   const stream = activeStreams.find((s) => s.id === order.streamId);
-                  if (!stream) return null;
-
+                  // ✅ Stream olmasa bile order'ı göster
+                  
                   return (
                     <OrderBookRow
                       key={order.id}
@@ -388,4 +392,3 @@ const OrderBook = () => {
 };
 
 export default OrderBook;
-

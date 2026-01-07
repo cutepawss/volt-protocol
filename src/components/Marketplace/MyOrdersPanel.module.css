@@ -1,0 +1,228 @@
+.panel {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.panelTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin: 0 0 1.5rem 0;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #94a3b8;
+}
+
+.emptyState p {
+  margin: 0.5rem 0;
+}
+
+.emptySubtext {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.ordersList {
+  display: grid;
+  gap: 1rem;
+}
+
+.orderCard {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 8px;
+  padding: 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.orderCard:hover {
+  border-color: rgba(20, 184, 166, 0.3);
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.1);
+}
+
+.orderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.orderInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.orderId {
+  font-weight: 600;
+  color: #f1f5f9;
+  font-size: 0.95rem;
+}
+
+.streamId {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.riskBadge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.riskBadge[data-risk="A"] {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+}
+
+.riskBadge[data-risk="B"] {
+  background: rgba(59, 130, 246, 0.2);
+  color: #3b82f6;
+}
+
+.riskBadge[data-risk="C"] {
+  background: rgba(249, 115, 22, 0.2);
+  color: #f97316;
+}
+
+.riskBadge[data-risk="D"] {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.orderStats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.statValue {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #14b8a6;
+}
+
+.bidsInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: rgba(20, 184, 166, 0.1);
+  border: 1px solid rgba(20, 184, 166, 0.2);
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.bidsCount {
+  font-size: 0.9rem;
+  color: #14b8a6;
+  font-weight: 500;
+}
+
+.viewBidsBtn {
+  padding: 0.4rem 1rem;
+  background: transparent;
+  border: 1px solid #14b8a6;
+  color: #14b8a6;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.viewBidsBtn:hover {
+  background: rgba(20, 184, 166, 0.1);
+}
+
+.orderActions {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.btnCancel,
+.btnDetails {
+  flex: 1;
+  padding: 0.625rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.btnCancel {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.btnCancel:hover {
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.btnDetails {
+  background: rgba(20, 184, 166, 0.1);
+  color: #14b8a6;
+  border: 1px solid rgba(20, 184, 166, 0.3);
+}
+
+.btnDetails:hover {
+  background: rgba(20, 184, 166, 0.2);
+}
+
+.orderFooter {
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.listedTime {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .orderStats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .orderActions {
+    flex-direction: column;
+  }
+  
+  .bidsInfo {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: stretch;
+  }
+  
+  .viewBidsBtn {
+    width: 100%;
+  }
+}

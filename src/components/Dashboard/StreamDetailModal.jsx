@@ -91,7 +91,7 @@ React.useEffect(() => {
   setIsWithdrawing(true);
   
   try {
-    await withdrawFromStream(currentStream.id); 
+    await withdrawFromStream(stream.id, claimableAmount); 
     toast.success(`Withdrawn ${claimableAmount.toFixed(6)} vUSDC`);
     
     setTimeout(() => {
