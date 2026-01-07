@@ -47,7 +47,7 @@
     "hardhat": "^2.28.2",
     "jsdom": "^27.4.0",
     "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.18",
+    "tailwindcss": "^3.4.19",
     "vite": "^7.2.4",
     "vitest": "^4.0.16"
   }
