@@ -40,8 +40,8 @@ const OrderBook = () => {
 
   // Memoize filtered and sorted orders for performance
   const activeOrders = useMemo(() => {
-    // ✅ FIX: Show ALL active orders, not just user's streams
-    let filtered = orderBook.filter((order) => order.isActive);
+    // Show all orders from orderBook
+    let filtered = orderBook;
 
     // Apply search filter
     if (debouncedSearchQuery) {
