@@ -5,6 +5,7 @@ import LoadingSpinner from './components/Shared/LoadingSpinner';
 import './App.css';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount } from 'wagmi';
+import LandingPage from './components/Landing/LandingPage';
 
 // Lazy load faucet component
 const VUSDCFaucet = lazy(() => import('./components/Faucet/vUSDCFaucet'));
@@ -23,6 +24,7 @@ function App() {
   const { connectWallet, disconnectWallet, user, toast } = useVolt();
   const [activeTab, setActiveTab] = React.useState('dashboard');
   const { address, isConnected } = useAccount();
+  const [showLanding, setShowLanding] = React.useState(!user.address);
 
 // Sync RainbowKit with VoltContext
 React.useEffect(() => {
@@ -33,7 +35,9 @@ React.useEffect(() => {
   }
 }, [isConnected, address, user.address]);
 
-  return (
+  return showLanding ? (
+  <LandingPage onLaunchApp={() => setShowLanding(false)} />
+) : (
     <div className="app-container">
       {/* SIDEBAR */}
       <aside className="sidebar">
