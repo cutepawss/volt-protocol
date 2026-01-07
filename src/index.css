@@ -19,8 +19,9 @@ body {
   background-color: var(--bg-main);
   color: var(--text-primary);
   font-family: 'DM Sans', sans-serif;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh; 
+  overflow-x: hidden; 
+  overflow-y: auto;
 }
 
 /* --- LAYOUT --- */
