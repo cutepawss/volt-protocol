@@ -56,26 +56,26 @@ const MyOrdersPanel = ({ onViewBids, onCancelOrder }) => {
                 <div className={styles.stat}>
                   <span className={styles.statLabel}>Price</span>
                   <span className={styles.statValue}>
-                    {order.price.toFixed(6)} vUSDC
+                    {(order.price || 0).toFixed(6)} vUSDC
                   </span>
                 </div>
                 <div className={styles.stat}>
                   <span className={styles.statLabel}>Discount</span>
                   <span className={styles.statValue}>
-                    {((1 - order.priceRatio) * 100).toFixed(1)}%
+                    {((1 - (order.priceRatio || 0.9)) * 100).toFixed(1)}%
                   </span>
                 </div>
                 <div className={styles.stat}>
-                  <span className={styles.statLabel}>Amount</span>
+                  <span className={styles.statLabel}>Percentage</span>
                   <span className={styles.statValue}>
-                    {order.amountRemaining.toFixed(6)} vUSDC
+                    {order.percentage || 0}%
                   </span>
                 </div>
                 {stream && (
                   <div className={styles.stat}>
                     <span className={styles.statLabel}>Stream Value</span>
                     <span className={styles.statValue}>
-                      {stream.remainingBalance.toFixed(6)} vUSDC
+                      {(stream.remainingBalance || 0).toFixed(6)} vUSDC
                     </span>
                   </div>
                 )}
@@ -112,7 +112,7 @@ const MyOrdersPanel = ({ onViewBids, onCancelOrder }) => {
 
               <div className={styles.orderFooter}>
                 <span className={styles.listedTime}>
-                  Listed {new Date(order.listedAt).toLocaleDateString()}
+                  Listed {order.listedAt ? new Date(order.listedAt * 1000).toLocaleDateString() : 'Unknown'}
                 </span>
               </div>
             </div>
