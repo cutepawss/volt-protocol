@@ -183,7 +183,10 @@ const OrderBook = () => {
       <div className={styles.tableSection}>
         <div className={styles.tableHeader}>
           <h2 className={styles.tableTitle}>
-            Active Sell Orders ({activeOrders.length})
+            Active Sell Orders ({activeOrders.filter(order => {
+              const stream = activeStreams.find(s => s.id === order.streamId);
+              return stream; // Only count orders with streams
+            }).length})
           </h2>
           <div className={styles.liveIndicator}>
             <span className={styles.liveDot}></span>
@@ -279,7 +282,6 @@ const OrderBook = () => {
               <tbody>
                 {activeOrders.map((order) => {
                   const stream = activeStreams.find((s) => s.id === order.streamId);
-                  // ✅ Stream olmasa bile order'ı göster
                   
                   return (
                     <OrderBookRow

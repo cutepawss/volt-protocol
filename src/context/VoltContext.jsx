@@ -416,9 +416,12 @@ export const VoltProvider = ({ children }) => {
       toast.info('Creating sell order...');
       
       const tx = await contract.createOrder(streamId, priceWei, percentage);
+      
+      // Wait for transaction confirmation FIRST
       const receipt = await tx.wait();
       
       if (receipt.status === 1) {
+        // Show success AFTER confirmation
         toast.success('Order created successfully!');
         
         // Refresh orders
@@ -448,9 +451,12 @@ export const VoltProvider = ({ children }) => {
       toast.info('Cancelling order...');
       
       const tx = await contract.cancelOrder(orderId);
+      
+      // Wait for transaction confirmation FIRST
       const receipt = await tx.wait();
       
       if (receipt.status === 1) {
+        // Show success AFTER confirmation
         toast.success('Order cancelled successfully!');
         
         // Refresh orders
